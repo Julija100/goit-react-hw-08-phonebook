@@ -19,5 +19,33 @@ const AddContactBtn = styled(Fab)({
 });
 
 export default function ContactsBar({ openAddContactModal }) {
-    const 
+    const [isShowAddContactBtn, setIsShowAddContactBtn] = useState(true);
+
+    const addContactBtnClick = () => {
+        openAddContactModal(true);
+    };
+
+    return (
+      <>
+        <AppBar
+          component="div"
+          position="fixed"
+          color="primary"
+          sx={{ top: "auto", bottom: 0 }}
+        >
+          <Toolbar sx={{ justifyContent: "flex-end" }}>
+            {isShowAddContactBtn && (
+              <AddContactBtn
+                color="secondary"
+                aria-label="add contact"
+                onClick={addContactBtnClick}
+              >
+                <AddIcon />
+              </AddContactBtn>
+            )}
+            <ContactsFilter showAddContactBtn={setIsShowAddContactBtn} />
+          </Toolbar>
+        </AppBar>
+      </>
+    );
 }
