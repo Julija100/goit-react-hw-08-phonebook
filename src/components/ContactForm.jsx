@@ -3,8 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Box, Button, Zoom } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
-import { getFilteredContacts } from "redux/contacts/contactsSelectors";
-import { theme } from "common/theme";
+import { getFilteredContacts } from "../redux/contacts/contactsSelectors";
+import { theme } from "../common/theme";
 import { StyledFormInput } from "./StyledFormInput";
 
 export default function AddContactForm({

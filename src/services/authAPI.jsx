@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from './apiContacts';
+import { BASE_URL } from './apiConstants';
 
 axios.defaults.baseURL = BASE_URL;
 

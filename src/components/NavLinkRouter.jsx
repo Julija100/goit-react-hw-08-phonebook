@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { TYpography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import { theme } from "../common/theme";
 
@@ -26,25 +26,26 @@ export default function NavLinkRouter({ children, homeLink, ...props }) {
         },
     };
 
-    const activeNavLinkHomeStyles {
+    const activeNavLinkHomeStyles = {
         '&.active': {
             color: activeNavLinkColor,
         },
     };
+
     return (
         <Typography
-      component={NavLink}
-      {...props}
-      sx={
-        homeLink
-          ? {
-              ...activeNavLinkHomeStyles,
-              ...commonNavLinkStyles,
+            component={NavLink}
+            {...props}
+            sx={
+                homeLink
+                    ? {
+                        ...activeNavLinkHomeStyles,
+                        ...commonNavLinkStyles,
+                    }
+                    : { ...activeNavLinkStyles, ...commonNavLinkStyles }
             }
-          : { ...activeNavLinkStyles, ...commonNavLinkStyles }
-      }
-    >
-      {children}
-    </Typography>
-    )
+        >
+            {children}
+        </Typography>
+    );
 }
