@@ -4,8 +4,8 @@ import { Grid, Typography, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-import { theme } from "common/theme";
-import { deleteContact } from "redux/contacts/contactsOperations";
+import { theme } from "../common/theme";
+import { deleteContact } from "../redux/contacts/contactsOperations";
 
 const ContactsItem = styled(Grid)(({ theme }) => ({
   ...theme.typography.body2,
