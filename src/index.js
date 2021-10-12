@@ -1,18 +1,22 @@
 
+import { ThemeProvider } from "@mui/system";
 import React from "react";
 import ReactDOM from "react-dom";
-import { store, persistor } from "./redux/store";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 import App from "./App";
+import { persistor, store } from "./redux/store";
+import { theme } from './common/theme'
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

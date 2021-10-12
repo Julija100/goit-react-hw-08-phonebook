@@ -1,5 +1,6 @@
 import { theme } from "../common/theme";
 
+// TODO remove this if not needed
 const globalStyle = {
   html: {
     height: "100%",
