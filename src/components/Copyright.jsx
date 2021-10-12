@@ -13,12 +13,12 @@ function Copyright(props) {
       {" © "}
       <Link
         color="inherit"
-        href="https://github.com/igorklyopov"
+        href="https://github.com/Julija100"
         target="_blank"
         rel="noopener noreferrer"
         className="link"
       >
-        by Igor Klyopov
+        by Julia Faltina
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

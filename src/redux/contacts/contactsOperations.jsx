@@ -1,18 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  fetchContactData,
-  postContactData,
-  deleteContactData,
-} from '../../services/contactsAPI';
 
-const fetchContacts = createAsyncThunk(
-  "contacts/fetchContacts",
+import contactsAPI from "../../services/contactsAPI";
+
+const getContacts = createAsyncThunk(
+  "contacts/getContacts",
   async (_, { rejectWithValue }) => {
     try {
-      const contacts = await fetchContactData();
+      const contacts = await contactsAPI.fetchContactsData();
       return contacts;
-    } catch (error) {
-      return rejectWithValue(error.message);
+    } catch (err) {
+      return rejectWithValue(err.message);
     }
   }
 );
@@ -21,10 +18,10 @@ const addContact = createAsyncThunk(
   "contacts/addContact",
   async (contactData, { rejectWithValue }) => {
     try {
-      const contact = await postContactData(contactData);
+      const contact = await contactsAPI.postContactData(contactData);
       return contact;
-    } catch (error) {
-      return rejectWithValue(error.message);
+    } catch (err) {
+      return rejectWithValue(err.message);
     }
   }
 );
@@ -33,12 +30,24 @@ const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   async (contactId, { rejectWithValue }) => {
     try {
-      await deleteContactData(contactId);
+      await contactsAPI.deleteContactData(contactId);
       return contactId;
-    } catch (error) {
-      return rejectWithValue(error.message);
+    } catch (err) {
+      return rejectWithValue(err.message);
     }
   }
 );
 
-export { fetchContacts, addContact, deleteContact };
+const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async ({ id, name, number }, { rejectWithValue }) => {
+    try {
+      const contact = await contactsAPI.patchContactData(id, { name, number });
+      return contact;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export { getContacts, addContact, deleteContact, editContact };

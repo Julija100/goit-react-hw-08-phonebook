@@ -1,0 +1,44 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Avatar, IconButton } from "@mui/material";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+
+import { logOutUser } from "../redux/authorisation/authOperations";
+import { getUserName } from "../redux/authorisation/authSelectors";
+import { theme } from "../common/theme";
+import NavList from "./NavList";
+import NavItem from "./NavItem";
+import NavLinkRouter from "./NavLinkRouter";
+
+export default function UserMenu() {
+  const dispatch = useDispatch();
+  const userName = useSelector(getUserName);
+
+  const onLogOutClick = () => dispatch(logOutUser());
+
+  return (
+    <>
+      <NavList className="list">
+        <NavItem>
+          <NavLinkRouter to="/user-account" className="link">
+            <Avatar alt="" sx={{ bgcolor: "background.light" }}>
+              {userName.at()}
+            </Avatar>
+          </NavLinkRouter>
+        </NavItem>
+        <NavItem>
+          <IconButton
+            aria-label="Log out"
+            sx={{
+              "&:hover, &:focus": {
+                color: theme.palette.background.default,
+              },
+            }}
+            onClick={onLogOutClick}
+          >
+            <ExitToAppIcon />
+          </IconButton>
+        </NavItem>
+      </NavList>
+    </>
+  );
+}

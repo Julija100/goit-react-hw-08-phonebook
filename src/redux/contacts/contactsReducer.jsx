@@ -1,19 +1,32 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOperations";
-import { changeFilter } from "./ContactsActions";
+import {
+  getContacts,
+  addContact,
+  deleteContact,
+  editContact,
+} from "../contacts/contactsOperations";
+import { changeFilter } from "../contacts/ContactsActions";
 
 const items = createReducer([], {
-  [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [getContacts.fulfilled]: (_, { payload }) => payload,
   [addContact.fulfilled]: (state, { payload }) => [...state, payload],
   [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+  [editContact.fulfilled]: (state, { payload }) => {
+    return [...state].map((contact) => {
+      if (contact.id === payload.id) {
+        return payload;
+      }
+      return contact;
+    });
+  },
 });
 
 const isLoading = createReducer(false, {
-  [fetchContacts.pending]: () => true,
-  [fetchContacts.fulfilled]: () => false,
-  [fetchContacts.rejected]: () => false,
+  [getContacts.pending]: () => true,
+  [getContacts.fulfilled]: () => false,
+  [getContacts.rejected]: () => false,
 
   [addContact.pending]: () => true,
   [addContact.fulfilled]: () => false,
@@ -22,11 +35,15 @@ const isLoading = createReducer(false, {
   [deleteContact.pending]: () => true,
   [deleteContact.fulfilled]: () => false,
   [deleteContact.rejected]: () => false,
+
+  [editContact.pending]: () => true,
+  [editContact.fulfilled]: () => false,
+  [editContact.rejected]: () => false,
 });
 
 const error = createReducer(null, {
-  [fetchContacts.pending]: () => null,
-  [fetchContacts.rejected]: (_, { payload }) => payload,
+  [getContacts.pending]: () => null,
+  [getContacts.rejected]: (_, { payload }) => payload,
 
   [addContact.pending]: () => null,
   [addContact.rejected]: (_, { payload }) => payload,
