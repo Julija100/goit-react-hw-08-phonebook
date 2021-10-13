@@ -6,26 +6,26 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../common/theme";
 import { GlobalStyles } from "@mui/material";
 
-import { globalStyle } from "../../src/common/globalStyle";
-import { PrivatRoute } from "../components/PrivatRoute";
-import { PublicRoute } from "../components/PublicRoute";
-import { getCurrentUser } from "../redux/authorisation/authOperations";
-import { getIsChecksCurrentUser } from "../redux/authorisation/authSelectors";
-import Loader from "../components/Loader";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { globalStyle } from "../common/globalStyle";
+import { PrivatRoute } from "./PrivatRoute";
+import { PublicRoute } from "./PublicRoute";
+import { getCurrentUser } from "../redux/auth/authOperations";
+import { getIsChecksCurrentUser } from "../redux/auth/authSelectors";
+import Loader from "./Loader";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const HomePage = lazy(() =>
-  import("../../src/pages/HomePage" /* webpackChunkName: "home-page" */)
+  import("../pages/HomePage" /* webpackChunkName: "home-page" */)
 );
 const ContactsPage = lazy(() =>
   import("../pages/ContactsPage" /* webpackChunkName: "contacts-page" */)
 );
 const LoginPage = lazy(() =>
-  import("../../src/pages/LoginPage" /* webpackChunkName: "login-page" */)
+  import("../pages/LoginPage" /* webpackChunkName: "login-page" */)
 );
 const SignUpPage = lazy(() =>
-  import("../../src/pages/RegistrationPage" /* webpackChunkName: "signup-page" */)
+  import("../pages/RegistrationPage" /* webpackChunkName: "signup-page" */)
 );
 const UserAccountPage = lazy(() =>
   import("../pages/UserAccauntPage" /* webpackChunkName: "user-account-page" */)

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Box } from "@mui/system";
 import { Container } from "@mui/material";
 
-import { getUserName } from "../redux/authorisation/authSelectors";
+import { getUserName } from "../redux/auth/authSelectors";
 
 
 export default function UserAccountPage() {

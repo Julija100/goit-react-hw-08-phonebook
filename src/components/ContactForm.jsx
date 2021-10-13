@@ -7,7 +7,7 @@ import { getFilteredContacts } from "../redux/contacts/contactsSelectors";
 import { theme } from "../common/theme";
 import { StyledFormInput } from "./StyledFormInput";
 
-export default function AddContactForm({
+export default function ContactForm({
   onSubmit,
   currentContactId,
   isContactSaved,

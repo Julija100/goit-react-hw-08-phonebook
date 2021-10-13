@@ -8,7 +8,7 @@ const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const user = await authAPI.postUserRegistrData(userCredentials);
+      const user = await authAPI.postUserRegisterData(userCredentials);
       authToken.set(user.token);
       return user;
     } catch (err) {

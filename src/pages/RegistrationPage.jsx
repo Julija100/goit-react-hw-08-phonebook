@@ -1,6 +1,6 @@
 import Registration from "../components/Registration";
 
-export default function SignUpPage() {
+export default function RegistrationPage() {
   return (
     <>
       <h1 className="visuallyHidden">Sign Up Page</h1>

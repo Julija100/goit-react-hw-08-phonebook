@@ -4,7 +4,7 @@ import {
   loginUser,
   logOutUser,
   getCurrentUser,
-} from "../authorisation/authOperations";
+} from "./authOperations";
 
 const initialState = {
   user: {

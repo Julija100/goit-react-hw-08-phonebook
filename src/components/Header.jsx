@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import AuthNav from "../components/AuthNav";
 import SiteNav from "../components/SiteNav";
 import UserMenu from "../components/UserMenu";
-import { getIsLoggedIn } from "../redux/authorisation/authSelectors";
+import { getIsLoggedIn } from "../redux/auth/authSelectors";
 
 
 

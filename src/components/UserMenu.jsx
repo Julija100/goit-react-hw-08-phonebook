@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Avatar, IconButton } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import { logOutUser } from "../redux/authorisation/authOperations";
-import { getUserName } from "../redux/authorisation/authSelectors";
+import { logOutUser } from "../redux/auth/authOperations";
+import { getUserName } from "../redux/auth/authSelectors";
 import { theme } from "../common/theme";
 import NavList from "./NavList";
 import NavItem from "./NavItem";

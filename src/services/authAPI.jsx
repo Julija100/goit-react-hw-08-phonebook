@@ -9,7 +9,7 @@ async function postUserRegisterData(userData) {
 }
 
 async function postUserLoginData(userData) {
-    const { data } = await axios.post('/users/logun', userData)
+    const { data } = await axios.post('/users/login', userData)
     return data;
 }
 

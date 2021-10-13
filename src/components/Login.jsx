@@ -17,7 +17,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import { loginUser } from "../redux/authorisation/authOperations";
+import { loginUser } from "../redux/auth/authOperations";
 import Notification from "./Notification";
 import { theme } from "../common/theme";
 
@@ -37,16 +37,16 @@ export default function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const userCreditals = {
-            email: authValues.email,
-            password: authValues.password,
+        const userCredentials = {
+          email: authValues.email,
+          password: authValues.password,
         };
 
         setAuthValues(initialAuthValues);
 
-        if (userCreditals.email === '' || userCreditals.password === '') {
-            setIsNotValid(false);
-            dispatch(loginUser(userCreditals));
+        if (userCredentials.email === "" || userCredentials.password === "") {
+          setIsNotValid(false);
+          dispatch(loginUser(userCredentials));
         }
     };
 

@@ -16,155 +16,151 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import { registerUser } from "../redux/authorisation/authOperations";
+import { registerUser } from "../redux/auth/authOperations";
 import { theme } from "../common/theme";
 import Notification from "./Notification";
 
-
 export default function Registration() {
-    const dispatch = useDispatch();
-    const initialAuthValues = {
-        name: '',
-        email: '',
-        password: '',
-        showPassword: false,
-    };
+  const dispatch = useDispatch();
+  const initialAuthValues = {
+    name: "",
+    email: "",
+    password: "",
+    showPassword: false,
+  };
 
-    const [authValues, setAuthValues] = useState(initialAuthValues);
-    const [isNotValid, setIsNotValid] = useState(false);
+  const [authValues, setAuthValues] = useState(initialAuthValues);
+  const [isNotValid, setIsNotValid] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-        const userCreditals = {
-            name: authValues.name,
-            email: authValues.email,
-            password: authValues.password,
-        };
-        setAuthValues(initialAuthValues);
-        if (
-            userCreditals.name || userCreditals.email === '' || userCreditals.password === ''
-        ) {
-            setIsNotValid(true);
-        } else {
-            setIsNotValid(false);
-            dispatch(registerUser(userCreditals));
-        }
+    const userCredentials = {
+      name: authValues.name,
+      email: authValues.email,
+      password: authValues.password,
     };
-    const handleChange = (prop) => (event) => {
-        setAuthValues({ ...authValues, [prop]: event.target.value });
-    };
+    setAuthValues(initialAuthValues);
+    if (
+      userCredentials.name === "" ||
+      userCredentials.email === "" ||
+      userCredentials.password === ""
+    ) {
+      setIsNotValid(true);
+    } else {
+      setIsNotValid(false);
+      dispatch(registerUser(userCredentials));
+    }
+  };
+  const handleChange = (prop) => (event) => {
+    setAuthValues({ ...authValues, [prop]: event.target.value });
+  };
 
-    const handleClickShowPassword = () => {
-        setAuthValues({
-            ...authValues,
-            showPassword: !authValues.showPassword,
-        });
-    };
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+  const handleClickShowPassword = () => {
+    setAuthValues({
+      ...authValues,
+      showPassword: !authValues.showPassword,
+    });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
-    return (
-      <Container component="div" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="dense"
-              required
-              fullWidth
-              id="name"
-              label="Name"
-              name="name"
-              type="email"
-              value={authValues.name}
-              autoComplete="username"
-              autoFocus
-              onChange={handleChange("name")}
-              error={isNotValid}
-              helperText={isNotValid ? "Enter name" : ""}
-            />
-            <TextField
-              margin="dense"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={authValues.email}
-              autoComplete="email"
-              onChange={handleChange("email")}
-              error={isNotValid}
-              helperText={isNotValid ? "Enter email" : ""}
-            />
-            <FormControl variant="outlined" fullWidth margin="dense">
-              <InputLabel
-                htmlFor="password"
-                sx={{ color: isNotValid && theme.palette.error.main }}
-              >
-                Password *
-              </InputLabel>
-              <OutlinedInput
-                id="password"
-                name="password"
-                type={authValues.showPassword ? "text" : "password"}
-                value={authValues.password}
-                onChange={handleChange("password")}
-                error={isNotValid}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {authValues.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-              />
-              {isNotValid && (
-                <Notification
-                  message="Enter password"
-                  color={theme.palette.error.main}
-                  fontSize="15px"
-                />
-              )}
-            </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+  return (
+    <Container component="div" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="dense"
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            type="email"
+            value={authValues.name}
+            autoComplete="username"
+            autoFocus
+            onChange={handleChange("name")}
+            error={isNotValid}
+            helperText={isNotValid ? "Enter name" : ""}
+          />
+          <TextField
+            margin="dense"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            value={authValues.email}
+            autoComplete="email"
+            onChange={handleChange("email")}
+            error={isNotValid}
+            helperText={isNotValid ? "Enter email" : ""}
+          />
+          <FormControl variant="outlined" fullWidth margin="dense">
+            <InputLabel
+              htmlFor="password"
+              sx={{ color: isNotValid && theme.palette.error.main }}
             >
-              Sign up
-            </Button>
-          </Box>
+              Password *
+            </InputLabel>
+            <OutlinedInput
+              id="password"
+              name="password"
+              type={authValues.showPassword ? "text" : "password"}
+              value={authValues.password}
+              onChange={handleChange("password")}
+              error={isNotValid}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {authValues.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+            {isNotValid && (
+              <Notification
+                message="Enter password"
+                color={theme.palette.error.main}
+                fontSize="15px"
+              />
+            )}
+          </FormControl>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign up
+          </Button>
         </Box>
-      </Container>
-    );
+      </Box>
+    </Container>
+  );
 }
