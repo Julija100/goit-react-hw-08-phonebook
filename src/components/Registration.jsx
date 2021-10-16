@@ -82,7 +82,7 @@ export default function Registration() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="dense"
             required
@@ -90,7 +90,6 @@ export default function Registration() {
             id="name"
             label="Name"
             name="name"
-            type="email"
             value={authValues.name}
             autoComplete="username"
             autoFocus

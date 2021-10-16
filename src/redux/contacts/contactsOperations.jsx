@@ -6,7 +6,7 @@ const getContacts = createAsyncThunk(
   "contacts/getContacts",
   async (_, { rejectWithValue }) => {
     try {
-      const contacts = await contactsAPI.fetchContactsData();
+      const contacts = await contactsAPI.fetchContactData();
       return contacts;
     } catch (err) {
       return rejectWithValue(err.message);

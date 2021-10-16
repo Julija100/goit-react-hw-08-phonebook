@@ -31,28 +31,30 @@ export default function ContactModal({
     setIsContactSaved(false);
   };
 
-  const onAddContactFormSubmit = (data) => {
+  const isNewContact = !currentContactId;
+
+  const onFormSubmit = (data) => {
     const duplicateContact = getDuplicateContact(
       contacts,
       data.name,
       data.number
     );
     setIsDuplicateContact(duplicateContact);
-    if (currentContactId) {
+
+    if (!isNewContact) {
       dispatch(
         editContact({
           id: currentContactId,
           ...data,
         })
       );
+      onAddContactModalClose()
       return;
     }
 
     if (!duplicateContact) {
       dispatch(addContact(data));
       setIsContactSaved(true);
-    } else {
-      return;
     }
   };
 
@@ -78,7 +80,7 @@ export default function ContactModal({
             color: theme.palette.primary.main,
           }}
         >
-          {currentContactId ? "Editing contact" : "Adding contact"}
+          {isNewContact ? "Adding contact" : "Editing contact"}
         </DialogTitle>
         <DialogContent
           sx={{
@@ -86,10 +88,11 @@ export default function ContactModal({
           }}
         >
           <ContactForm
-            onSubmit={onAddContactFormSubmit}
+            onSubmit={onFormSubmit}
             currentContactId={currentContactId}
             isContactSaved={isContactSaved}
             setIsContactSaved={setIsContactSaved}
+            isNewContact={isNewContact}
           />
           <ContactNotifications
             currentContactId={currentContactId}
